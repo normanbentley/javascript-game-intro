@@ -11,5 +11,16 @@ export default class InputHandler {
         default:
       }
     });
+    document.addEventListener("keyup", (event) => {
+      switch (event.keyCode) {
+        case 37:
+          paddle.stop();
+          break;
+        case 39:
+          paddle.stop();
+          break;
+        default:
+      }
+    });
   }
 }

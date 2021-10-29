@@ -1,5 +1,6 @@
 export default class Paddle {
   constructor(gameWidth, gameHeight) {
+    this.gameWidth = gameWidth;
     this.width = 150;
     this.height = 20;
 
@@ -17,12 +18,19 @@ export default class Paddle {
   }
 
   // how much time has changed since this has been updated?
-  // moves 5 frames a second
+  // moves 5 frames a seconds
   update(deltaTime) {
     if (!deltaTime) return;
     this.position.x += this.speed;
-  }
 
+    if (this.position.x < 0) this.position.x = 0;
+    if (this.position.x + this.width > this.gameWidth) {
+      this.position.x = this.gameWidth - this.width;
+    }
+  }
+  stop() {
+    this.speed = 0;
+  }
   moveLeft() {
     this.speed = -this.maxSpeed;
   }
