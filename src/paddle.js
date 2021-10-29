@@ -13,12 +13,12 @@ export default class Paddle {
     };
   }
   draw(ctx) {
-    ctx.fillStyle = "hotpink";
+    ctx.fillStyle = "aqua";
     ctx.fillRect(this.position.x, this.position.y, this.width, this.height);
   }
 
   // how much time has changed since this has been updated?
-  // moves 5 frames a seconds
+  // moves 5 frames a second
   update(deltaTime) {
     if (!deltaTime) return;
     this.position.x += this.speed;
