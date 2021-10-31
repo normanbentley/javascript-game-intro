@@ -4,6 +4,8 @@ export default class Ball {
     this.gameHeight = game.gameHeight;
 
     this.image = document.getElementById("img_ball");
+
+    this.game = game;
     this.velocity = 5;
     this.speed = { x: this.velocity, y: this.velocity };
     this.position = { x: 10, y: 10 };
@@ -27,6 +29,21 @@ export default class Ball {
       this.speed.x = -this.speed.x;
     }
     if (this.position.y + this.size > this.gameHeight || this.position.y < 0) {
+      this.speed.y = -this.speed.y;
+    }
+    
+    let bottomOfBall = this.position.y + this.size;
+    let topOfPaddle = this.game.paddle.position.y;
+
+    let leftSideOfPaddle = this.game.paddle.position.x;
+    let rightSideOfPaddle =
+      this.game.paddle.position.x + this.game.paddle.width;
+    console.log(leftSideOfPaddle);
+    let ballCenterX = this.position.x + this.size / 2;
+
+    let inlineVertically =
+      ballCenterX >= leftSideOfPaddle && ballCenterX <= rightSideOfPaddle;
+    if (bottomOfBall >= topOfPaddle && inlineVertically) {
       this.speed.y = -this.speed.y;
     }
   }
