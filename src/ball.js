@@ -6,8 +6,7 @@ export default class Ball {
     this.image = document.getElementById("img_ball");
 
     this.game = game;
-
-    this.velocity = 2;
+    this.velocity = 5;
     this.speed = { x: this.velocity, y: this.velocity };
     this.position = { x: 10, y: 10 };
     this.size = 16;
@@ -32,7 +31,7 @@ export default class Ball {
     if (this.position.y + this.size > this.gameHeight || this.position.y < 0) {
       this.speed.y = -this.speed.y;
     }
-
+    
     let bottomOfBall = this.position.y + this.size;
     let topOfPaddle = this.game.paddle.position.y;
 
