@@ -1,3 +1,5 @@
+import { detectCollission } from "./collisionDetection";
+
 export default class Ball {
   constructor(game) {
     this.gameWidth = game.gameWidth;
@@ -31,20 +33,7 @@ export default class Ball {
     if (this.position.y + this.size > this.gameHeight || this.position.y < 0) {
       this.speed.y = -this.speed.y;
     }
-    
-    let bottomOfBall = this.position.y + this.size;
-    let topOfPaddle = this.game.paddle.position.y;
 
-    let leftSideOfPaddle = this.game.paddle.position.x;
-    let rightSideOfPaddle =
-      this.game.paddle.position.x + this.game.paddle.width;
-    console.log(leftSideOfPaddle);
-    let ballCenterX = this.position.x + this.size / 2;
-
-    let inlineVertically =
-      ballCenterX >= leftSideOfPaddle && ballCenterX <= rightSideOfPaddle;
-    if (bottomOfBall >= topOfPaddle && inlineVertically) {
-      this.speed.y = -this.speed.y;
-    }
+    detectCollission(this, this.game.paddle);
   }
 }
