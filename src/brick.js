@@ -8,9 +8,17 @@ export default class Brick {
     this.position = position;
     this.width = 80;
     this.height = 24;
+    this.markedForDeletion = false;
   }
   update() {
-    detectCollission(this.game.ball, this);
+    if (detectCollission(this.game.ball, this) === "horizontal") {
+      this.markedForDeletion = true;
+      this.game.ball.speed.x = -this.game.ball.speed.x;
+    }
+    if (detectCollission(this.game.ball, this) === "vertical") {
+      this.markedForDeletion = true;
+      this.game.ball.speed.y = -this.game.ball.speed.y;
+    }
   }
   draw(ctx) {
     ctx.drawImage(

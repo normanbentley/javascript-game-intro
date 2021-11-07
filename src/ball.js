@@ -34,6 +34,11 @@ export default class Ball {
       this.speed.y = -this.speed.y;
     }
 
-    detectCollission(this, this.game.paddle);
+    if (detectCollission(this, this.game.paddle) === "vertical") {
+      this.speed.y = -this.speed.y;
+    }
+    if (detectCollission(this, this.game.paddle) === "horizontal") {
+      this.speed.x = -this.speed.x;
+    }
   }
 }

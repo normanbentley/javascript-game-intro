@@ -30,10 +30,6 @@ export function detectCollission(ball, gameObject) {
     ballSides.top <= objectSides.bottom &&
     inlineVertically &&
     ballSides.bottom > objectSides.bottom;
-  if (downwardCollision || upwardCollision) {
-    ball.speed.y = -ball.speed.y;
-  }
-
   let rightwardCollision =
     ballSides.right >= objectSides.left &&
     inlineHorizontally &&
@@ -43,6 +39,9 @@ export function detectCollission(ball, gameObject) {
     inlineHorizontally &&
     ballSides.right >= objectSides.right;
   if (leftwardCollision || rightwardCollision) {
-    ball.speed.x = -ball.speed.x;
+    return "horizontal";
+  } else if (downwardCollision || upwardCollision) {
+    return "vertical";
   }
+  return "";
 }
