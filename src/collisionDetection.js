@@ -25,19 +25,19 @@ export function detectCollission(ball, gameObject) {
   let downwardCollision =
     ballSides.bottom >= objectSides.top &&
     inlineVertically &&
-    ballSides.top <= objectSides.top;
+    ballSides.bottom <= objectSides.bottom;
   let upwardCollision =
     ballSides.top <= objectSides.bottom &&
     inlineVertically &&
-    ballSides.bottom > objectSides.bottom;
+    ballSides.top >= objectSides.top;
   let rightwardCollision =
     ballSides.right >= objectSides.left &&
     inlineHorizontally &&
-    ballSides.left <= objectSides.left;
+    ballSides.right <= objectSides.right;
   let leftwardCollision =
     ballSides.left <= objectSides.right &&
     inlineHorizontally &&
-    ballSides.right >= objectSides.right;
+    ballSides.left >= objectSides.left;
   if (leftwardCollision || rightwardCollision) {
     return "horizontal";
   } else if (downwardCollision || upwardCollision) {
